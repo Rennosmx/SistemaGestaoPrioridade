@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="300.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.LoginController">
+   <children>
+      <Label layoutX="132.0" layoutY="23.0" text="SGP">
+         <font>
+            <Font name="Arial Bold" size="64.0" />
+         </font>
+      </Label>
+      <Button layoutX="176.0" layoutY="205.0" mnemonicParsing="false" onAction="#btnEntrar" text="Entrar" />
+      <Hyperlink layoutX="165.0" layoutY="246.0" onAction="#linkCadastrar" text="Cadastre-se" />
+      <Label layoutX="83.0" layoutY="124.0" text="Usuário:" />
+      <Label layoutX="83.0" layoutY="159.0" text="Senha:" />
+      <TextField fx:id="txUsuario" layoutX="131.0" layoutY="120.0" />
+      <TextField fx:id="txSenha" layoutX="131.0" layoutY="155.0" />
+   </children>
+</AnchorPane>
