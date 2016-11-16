@@ -16,16 +16,16 @@ public class LoginController {
 	
 	@FXML
 	public void btnEntrar(){
-		
+		//main.mostaTelaInicial();
 	}
 		
 	@FXML
 	public void linkCadastrar(){
-		
+		main.mostraTelaCadastro();
 	}
 
 	public void setMain(Main main) {
-		
+		this.main = main;
 	}
 			
 }
