@@ -8,6 +8,10 @@ public class Usuario {
 	private String login;
 	private String senha;
 	private Date dataNascimento;
+	private String rg;
+	private String cpf;
+	private String sexo;
+	private String telefone;
 	
 	public int getId() {
 		return id;
