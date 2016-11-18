@@ -13,12 +13,18 @@ public class Usuario {
 	private String sexo;
 	private String telefone;
 	
-	public int getId() {
-		return id;
+	public Usuario(String login, String senha, Date dataNascimento, String rg, String cpf, String sexo, String telefone){
+		this.login = login;
+		this.senha = senha;
+		this.dataNascimento = dataNascimento;
+		this.rg = rg;
+		this.cpf = cpf;
+		this.sexo = sexo;
+		this.telefone = telefone;
 	}
 	
-	public void setId(int id) {
-		this.id = id;
+	public int getId() {
+		return id;
 	}
 	
 	public String getLogin() {
