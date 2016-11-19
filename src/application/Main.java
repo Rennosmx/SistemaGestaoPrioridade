@@ -16,19 +16,18 @@ import javafx.scene.layout.Pane;
 public class Main extends Application {
 	
 	private Stage primaryStage;
-	private AnchorPane telaLogin, telaCadastro;
-	private Pane formularioPaciente;
+	private AnchorPane telaLogin, telaCadastro;	
+	private Scene scene;
 	
 	@Override
 	public void start(Stage primaryStage) {		
 		
 		this.primaryStage = primaryStage;
 
-        this.primaryStage.setTitle("SGP - Saúde");
+        this.primaryStage.setTitle("SGP - Sa�de");
         
         mostraTelaLogin();			
 	}
-	
 	
 	public void mostraTelaLogin(){
 		
@@ -38,7 +37,7 @@ public class Main extends Application {
 			loader.setLocation(Main.class.getResource("/view/Login.fxml"));					
 			telaLogin = (AnchorPane) loader.load();
 			
-			Scene scene = new Scene(telaLogin);
+			scene = new Scene(telaLogin);
             primaryStage.setScene(scene);
             primaryStage.setResizable(false);            
             primaryStage.show();
@@ -59,14 +58,11 @@ public class Main extends Application {
 			FXMLLoader loader = new FXMLLoader();
 			loader.setLocation(Main.class.getResource("/view/Cadastro.fxml"));					
 			telaCadastro = (AnchorPane) loader.load();
-									
-			Scene scene = new Scene(telaCadastro);
+															
+			scene = new Scene(telaCadastro);
             primaryStage.setScene(scene);
             primaryStage.setResizable(false);            
             primaryStage.show();
-			                      
-            CadastroController controller = loader.getController();
-            controller.setMain(this);
             
             
 		} catch (IOException e) {
@@ -74,7 +70,18 @@ public class Main extends Application {
 		}
 	}
 			
+	public Scene getScene() {
+		return scene;
+	}
+
+	public AnchorPane getTelaCadastro() {
+		return telaCadastro;
+	}
 	
+	public Stage getPrimaryStage() {
+		return primaryStage;
+	}
+
 	public static void main(String[] args) {
 		launch(args);
 	}
