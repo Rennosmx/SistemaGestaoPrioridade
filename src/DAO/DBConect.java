@@ -10,20 +10,10 @@ public class DBConect {
 	private String url = "jdbc:postgresql://localhost:5432/sgp_db";
 	private String user = "postgres";
 	private String password = "postgres";
-	private Connection conn;
+	protected Connection conn;
 	
 	public DBConect(){
-		try{
-			Class.forName(this.driver);
-			this.conn = DriverManager.getConnection(this.url,this.user,this.password);
-			System.out.println("open connection...");
-			//this.createTable("teste");
-			this.desconectar();
-		}catch(ClassNotFoundException e){
-			System.out.println("Não foi possível encontrar o diver de Banco: " + e.getMessage() );
-		}catch(SQLException e){
-			System.out.println("Error ao conctar ao banco: " + e.getMessage());
-		}
+		
 	}
 	
 	public void createTable(String tableName){
@@ -44,8 +34,19 @@ public class DBConect {
 			}
 		}*/
 	}
+	public void conect(){
+		try{
+			Class.forName(this.driver);
+			this.conn = DriverManager.getConnection(this.url,this.user,this.password);
+			System.out.println("open connection...");
+		}catch(ClassNotFoundException e){
+			System.out.println("Não foi possível encontrar o diver de Banco: " + e.getMessage() );
+		}catch(SQLException e){
+			System.out.println("Error ao conctar ao banco: " + e.getMessage());
+		}
+	}
 	// desconecta do banco de dados
-	public void desconectar(){
+	public void disconect(){
 		try {
 			if(this.conn != null) this.conn.close();
 			System.out.println("close connection...");
