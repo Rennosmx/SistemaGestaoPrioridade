@@ -12,8 +12,9 @@ public class Usuario {
 	private String cpf;
 	private String sexo;
 	private String telefone;
+	private String email;
 	
-	public Usuario(String login, String senha, Date dataNascimento, String rg, String cpf, String sexo, String telefone){
+	public Usuario(String login, String senha, Date dataNascimento, String rg, String cpf, String sexo, String telefone, String email){
 		this.login = login;
 		this.senha = senha;
 		this.dataNascimento = dataNascimento;
@@ -21,6 +22,7 @@ public class Usuario {
 		this.cpf = cpf;
 		this.sexo = sexo;
 		this.telefone = telefone;
+		this.email = email;
 	}
 	
 	public int getId() {

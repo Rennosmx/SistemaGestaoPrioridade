@@ -1,5 +1,6 @@
 package view;
 
+import DAO.DBConect;
 import application.Main;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
@@ -21,6 +22,7 @@ public class LoginController {
 		
 	@FXML
 	public void linkCadastrar(){
+		DBConect db = new DBConect();
 		main.mostraTelaCadastro();
 	}
 
