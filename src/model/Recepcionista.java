@@ -8,4 +8,12 @@ public class Recepcionista extends Usuario{
 		super(login, senha, dataNascimento, rg, cpf, sexo, telefone, email);
 		this.codigo = codigo;
 	}
+	
+	public void setCodigo(String codigo){
+		this.codigo = codigo;
+	}
+	
+	public String getCodigo(){
+		return this.codigo;
+	}
 }
