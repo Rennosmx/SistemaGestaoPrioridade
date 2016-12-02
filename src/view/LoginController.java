@@ -7,8 +7,6 @@ import javafx.scene.control.TextField;
 
 public class LoginController {
 
-	private Main main;
-	
 	@FXML
 	TextField txUsuario;
 	
@@ -23,11 +21,10 @@ public class LoginController {
 	@FXML
 	public void linkCadastrar(){
 		DBConect db = new DBConect();
-		main.mostraTelaCadastro();
+		Main.mostraTelaCadastro();
 	}
 
 	public void setMain(Main main) {
-		this.main = main;
 	}
 			
 }

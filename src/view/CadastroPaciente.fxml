@@ -8,7 +8,7 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.Pane?>
 
-<Pane fx:id="painelPaciente" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="434.0" prefWidth="753.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="434.0" prefWidth="753.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.CadastroController">
    <children>
       <Label layoutX="14.0" layoutY="14.0" text="Nome:" />
       <TextField layoutX="14.0" layoutY="31.0" prefHeight="25.0" prefWidth="725.0" />
@@ -49,6 +49,6 @@
       <Label layoutX="379.0" layoutY="182.0" text="Alergia:" />
       <TextField layoutX="379.0" layoutY="199.0" prefHeight="25.0" prefWidth="164.0" />
       <Button layoutX="375.0" layoutY="339.0" mnemonicParsing="false" text="Cadastrar" />
-      <Button layoutX="301.0" layoutY="339.0" mnemonicParsing="false" text="Cancelar" />
+      <Button fx:id="btnCancelarCadastro" layoutX="301.0" layoutY="339.0" mnemonicParsing="false" text="Cancelar" />
    </children>
 </Pane>

@@ -10,6 +10,7 @@ public class CadastroPacienteController {
 	
 	@FXML
 	private Pane painelPaciente;
+	
 		
 	public Pane getPainelPaciente() {
 		return painelPaciente;

@@ -9,27 +9,27 @@ import view.CadastroController;
 import view.LoginController;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.Pane;
+
 
 
 public class Main extends Application {
 	
-	private Stage primaryStage;
-	private AnchorPane telaLogin, telaCadastro;	
-	private Scene scene;
+	private Main main;
+	private static Stage primaryStage;
+	private static AnchorPane telaLogin;
+	private static AnchorPane telaCadastro;		
 	
 	@Override
 	public void start(Stage primaryStage) {		
 		
-		this.primaryStage = primaryStage;
+		Main.primaryStage = primaryStage;
 
-        this.primaryStage.setTitle("SGP - Saï¿½de");
+        Main.primaryStage.setTitle("SGP - Saúde");
         
         mostraTelaLogin();			
 	}
 	
-	public void mostraTelaLogin(){
+	public static void mostraTelaLogin(){
 		
 		try {
 			 // Carrega a tela de login
@@ -37,13 +37,13 @@ public class Main extends Application {
 			loader.setLocation(Main.class.getResource("/view/Login.fxml"));					
 			telaLogin = (AnchorPane) loader.load();
 			
-			scene = new Scene(telaLogin);
+			Scene scene = new Scene(telaLogin);
             primaryStage.setScene(scene);
             primaryStage.setResizable(false);            
             primaryStage.show();
 			       
             LoginController controller = loader.getController();
-            controller.setMain(this);
+            //controller.setMain(this);
             
             
 		} catch (IOException e) {
@@ -51,7 +51,7 @@ public class Main extends Application {
 		}
 	}
 	
-	public void mostraTelaCadastro(){
+	public static void mostraTelaCadastro(){
 		
 		try {
 			 // Carrega a tela de login
@@ -59,21 +59,20 @@ public class Main extends Application {
 			loader.setLocation(Main.class.getResource("/view/Cadastro.fxml"));					
 			telaCadastro = (AnchorPane) loader.load();
 															
-			scene = new Scene(telaCadastro);
+			Scene scene = new Scene(telaCadastro);
             primaryStage.setScene(scene);
             primaryStage.setResizable(false);            
             primaryStage.show();
             
+            CadastroController controller = loader.getController();
+            //controller.setMain(this);
             
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
 			
-	public Scene getScene() {
-		return scene;
-	}
-
+	
 	public AnchorPane getTelaCadastro() {
 		return telaCadastro;
 	}

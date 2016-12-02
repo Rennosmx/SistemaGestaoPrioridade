@@ -3,14 +3,17 @@ package view;
 
 import java.io.IOException;
 
+
 import application.Main;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
@@ -18,8 +21,6 @@ import model.TipoUsuario;
 
 
 public class CadastroController {
-
-	private Main main;
 
 	@FXML
 	private AnchorPane painelPrincipal;
@@ -29,6 +30,9 @@ public class CadastroController {
 
 	@FXML
 	private ComboBox<String> tipoUsuario = new ComboBox<String>();
+	
+	@FXML
+	private Button btnCancelarCadastro = new Button();
 
 	private ObservableList<String> tipoUsuarioOpcoes;
 
@@ -39,16 +43,17 @@ public class CadastroController {
 	public void setPainelAtual(Pane painelAtual) {
 		this.painelCadastro = painelAtual;
 	}
-
+	
+	
 	@FXML
 	public void initialize() {
 		initComponents();
 		initListeners();
-		initLayout();
+		initLayout();		
 	}
 
 	private void initLayout() {
-		// TODO Auto-generated method stub		
+
 	}
 
 	public void initComponents() {
@@ -67,8 +72,22 @@ public class CadastroController {
 				selecionarTipoUsuario(newValue);
 			}
 		});
+		
+		btnCancelarCadastro.setOnAction(new EventHandler<ActionEvent>() {
+			
+			@Override
+			public void handle(ActionEvent event) {
+				
+				Main.mostraTelaLogin();
+				
+			}
+		});
+		
+		
 	}
 
+	
+	
 	//Metodo para atualizar pane contendo formulário do tipo de Usuário
 	public void selecionarTipoUsuario(String tipoUsuario){				
 		painelCadastro.getChildren().clear();
@@ -89,15 +108,19 @@ public class CadastroController {
 		FXMLLoader loaderPane = new FXMLLoader();
 		loaderPane.setLocation(Main.class.getResource(tipoUsuario.getPath()));					
 		try {
-
 			painelCadastro.getChildren().clear();					
-			painelCadastro.getChildren().add(loaderPane.load());
+			painelCadastro.getChildren().add(loaderPane.load());						
 			painelCadastro.requestLayout();
+			
+			
 
 		} catch (IOException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
+	}
+
+	public void setMain(Main main) {		
 	}
 
 }
