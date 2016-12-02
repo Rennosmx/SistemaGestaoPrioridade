@@ -5,7 +5,7 @@ import java.sql.Statement;
 
 public class DAORecepcionista extends DBConect{
 	private static final String TABLE_NAME = "recepcionista";
-	private static final String COLUMN_ID = "id";
+	private static final String COLUMN_ID = "id";	
 	private static final String COLUMN_USER_ID = "usuario_id";
 	private static final String COLUMN_CODIGO = "codigo";
 	
@@ -21,7 +21,7 @@ public class DAORecepcionista extends DBConect{
 	// query que será executada
 		String sql = "INSERT INTO "
 			+TABLE_NAME+"("+COLUMN_USER_ID+","+COLUMN_CODIGO+")"
-								+ " VALUES('"+usuario_id+"','"+codigo+"')";
+			   + " VALUES('"+usuario_id+"','"+codigo+"')";
 
 		try {
 			stmt = this.conn.createStatement();

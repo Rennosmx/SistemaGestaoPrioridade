@@ -19,7 +19,8 @@ public class DAOUsuario extends DBConect{
 		
 	}
 	
-	public void insertUsuario(String login, String senha, String dataNascimento, String rg, String cpf, String sexo, String telefone, String email){
+	public void insertUsuario(String login, String senha, String dataNascimento, 
+							  String rg, String cpf, String sexo, String telefone, String email){
 		//abre conexao com banco
 			super.conect();
 		// prepara statement para executar query
