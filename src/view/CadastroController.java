@@ -4,14 +4,11 @@ package view;
 import java.io.IOException;
 
 import DAO.DAORecepcionista;
-import DAO.DBConect;
 import application.Main;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
@@ -26,6 +23,11 @@ import model.TipoUsuario;
 
 public class CadastroController {
 
+	//Id do Formulario ativo
+	private static String idCadastro;
+	
+	private static int idRecepcionista = 0;
+	
 	@FXML
 	private AnchorPane painelPrincipal;
 
@@ -34,13 +36,7 @@ public class CadastroController {
 
 	@FXML
 	private ComboBox<String> tipoUsuario = new ComboBox<String>();
-	
-	@FXML
-	private Button btnCancelarCadastro = new Button();
-
-	@FXML
-	private Button btnCadastrar = new Button();
-	
+			
 	private ObservableList<String> tipoUsuarioOpcoes;
 	
 	//TODOS OS CAMPOS DOS 3 FORMULARIOS
@@ -103,46 +99,39 @@ public class CadastroController {
 			@Override
 			public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
 				selecionarTipoUsuario(newValue);
+				idCadastro = newValue;
 			}
 		});
 		
-		btnCancelarCadastro.setOnAction(new EventHandler<ActionEvent>() {
-			
-			@Override
-			public void handle(ActionEvent event) {
-				
-				Main.mostraTelaLogin();
-				
-			}
-		});
 		
-		btnCadastrar.setOnAction(new EventHandler<ActionEvent>() {
+	}
+	
+	@FXML
+	private void cancelarCadastro(){			
+		Main.mostraTelaLogin();
+	}
+		
+	@FXML
+	private void cadastrar(){
 			
-			@Override
-			public void handle(ActionEvent event) {
-				
-				DBConect db = new DBConect();
-				db.conect();
-				
-				//Checa o tipo de formulário e insere no Banco
-				
-				if(tipoUsuario.equals(TipoUsuario.TIPO_MEDICO.getTipo())) {				
-					
+		//Botão de cadastrar no Banco do Formulário para Médico
+		if(idCadastro == "Médico") {				
+			//DAOMedico novoMedico;
+			System.out.println("Cadastrando Médico");
+		}
 
-				}
+		//Botão de cadastrar no Banco do Formulário para Paciente
+		if(idCadastro == "Paciente") {
+			//DAOPaciente novoPaciente;
+			System.out.println("Cadastrando Paciente");
+		} 
 
-				if(tipoUsuario.equals(TipoUsuario.TIPO_PACIENTE.getTipo())) {
-					
-
-				} else if(tipoUsuario.equals(TipoUsuario.TIPO_RECEPCIONISTA.getTipo())){
-					
-					
-					
-				}
-				
-				
-			}
-		});
+		//Botão de cadastrar no Banco do Formulário para Recepcionista
+		if(idCadastro == "Recepcionista"){																			
+			DAORecepcionista novoRecepcionista = new DAORecepcionista();
+			novoRecepcionista.insertRecepcionista(idRecepcionista, (idRecepcionista+1), codigoId.getText().toString() );
+			idRecepcionista++;	
+		}					
 	}
 	
 	//Metodo para atualizar pane contendo formulário do tipo de Usuário
@@ -172,7 +161,7 @@ public class CadastroController {
 			
 
 		} catch (IOException e1) {
-			// TODO Auto-generated catch block
+
 			e1.printStackTrace();
 		}
 	}

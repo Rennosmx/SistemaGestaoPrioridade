@@ -19,8 +19,7 @@ public class LoginController {
 	}
 		
 	@FXML
-	public void linkCadastrar(){
-		DBConect db = new DBConect();
+	public void linkCadastrar(){		
 		Main.mostraTelaCadastro();
 	}
 

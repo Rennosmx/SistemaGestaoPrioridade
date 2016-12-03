@@ -2,6 +2,7 @@ package application;
 	
 import java.io.IOException;
 
+
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.stage.Stage;
@@ -14,7 +15,7 @@ import javafx.scene.layout.AnchorPane;
 
 public class Main extends Application {
 	
-	private Main main;
+	
 	private static Stage primaryStage;
 	private static AnchorPane telaLogin;
 	private static AnchorPane telaCadastro;		
@@ -42,7 +43,7 @@ public class Main extends Application {
             primaryStage.setResizable(false);            
             primaryStage.show();
 			       
-            LoginController controller = loader.getController();
+           // LoginController controller = loader.getController();
             //controller.setMain(this);
             
             
@@ -64,7 +65,7 @@ public class Main extends Application {
             primaryStage.setResizable(false);            
             primaryStage.show();
             
-            CadastroController controller = loader.getController();
+            //CadastroController controller = loader.getController();
             //controller.setMain(this);
             
 		} catch (IOException e) {
