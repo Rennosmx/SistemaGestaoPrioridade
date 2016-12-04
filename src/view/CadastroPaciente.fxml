@@ -4,6 +4,7 @@
 <?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.Pane?>
@@ -17,8 +18,8 @@
       <Label layoutX="359.0" layoutY="98.0" text="Estado Civil:" />
       <TextField fx:id="estadoCivil" layoutX="358.0" layoutY="115.0" prefWidth="185.0" />
       <Label layoutX="197.0" layoutY="98.0" text="Sexo:" />
-      <RadioButton layoutX="197.0" layoutY="119.0" mnemonicParsing="false" text="Masculino" />
-      <RadioButton layoutX="279.0" layoutY="119.0" mnemonicParsing="false" text="Feminino" />
+      <RadioButton fx:id="sexoMasculino" layoutX="197.0" layoutY="119.0" mnemonicParsing="false" text="Masculino" />
+      <RadioButton fx:id="sexoFeminino" layoutX="279.0" layoutY="119.0" mnemonicParsing="false" text="Feminino" />
       <Label layoutX="14.0" layoutY="140.0" text="RG:" />
       <TextField fx:id="rg" layoutX="14.0" layoutY="157.0" prefHeight="25.0" prefWidth="174.0" />
       <Label layoutX="197.0" layoutY="140.0" text="CPF:" />
@@ -53,6 +54,6 @@
       <Label layoutX="14.0" layoutY="14.0" text="Login:" />
       <TextField fx:id="login" layoutX="14.0" layoutY="31.0" prefHeight="25.0" prefWidth="174.0" />
       <Label layoutX="198.0" layoutY="14.0" text="Senha:" />
-      <TextField fx:id="senha" layoutX="198.0" layoutY="31.0" prefHeight="25.0" prefWidth="174.0" />
+      <PasswordField fx:id="senha" layoutX="198.0" layoutY="31.0" />
    </children>
 </Pane>

@@ -9,7 +9,7 @@ public class DBConect {
 	private String driver = "org.postgresql.Driver";
 	private String url = "jdbc:postgresql://localhost:5432/sgp_db";
 	private String user = "postgres";
-	private String password = "postgres";
+	private String password = "cativeiro";
 	protected Connection conn;
 	
 	public DBConect(){

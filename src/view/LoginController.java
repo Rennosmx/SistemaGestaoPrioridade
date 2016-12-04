@@ -16,6 +16,9 @@ public class LoginController {
 	@FXML
 	public void btnEntrar(){
 		//main.mostaTelaInicial();
+		
+		
+		
 	}
 		
 	@FXML

@@ -15,15 +15,15 @@ public class DAOEndereco extends DBConect {
 		
 	}
 	
-	public void insertEndereco(String rua, String cep, String bairro, String numero){
+	public void insertEndereco(int id, String rua, String cep, String bairro, int numero){
 	//abre conexao com banco
 		super.conect();
 	// prepara statement para executar query
 		Statement stmt = null;
 	// query que será executada
 		String sql = "INSERT INTO "
-			+TABLE_NAME+"("+COLUMN_RUA+","+COLUMN_CEP+","+COLUMN_BAIRRO+","+COLUMN_NUMERO+")"
-								+ " VALUES('"+rua+"','"+cep+"','"+bairro+"','"+numero+"')";
+			+TABLE_NAME+"("+COLUMN_ID+","+COLUMN_RUA+","+COLUMN_CEP+","+COLUMN_BAIRRO+","+COLUMN_NUMERO+")"
+								+ " VALUES('"+id+"','"+rua+"','"+cep+"','"+bairro+"','"+numero+"')";
 
 		try {
 			stmt = this.conn.createStatement();
