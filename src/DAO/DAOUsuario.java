@@ -15,14 +15,16 @@ public class DAOUsuario extends DBConect{
 	private static final String COLUMN_SEXO = "sexo";
 	private static final String COLUMN_TELEFONE = "telefone";
 	private static final String COLUMN_EMAIL = "email";
+	private static final String COLUMN_ID_ENDERECO = "id_endereco";
 	private static final String CREATE_TABLE = "CREATE TABLE IF NOT EXISTS usuario"
-			+ " (id integer , login varchar(50) NOT NULL, senha varchar(50) NOT NULL, dataNascimento date NOT NULL,"
-			+ " rg varchar(7) NOT NULL, cpf varchar(11) NOT NULL, sexo varchar(1) NOT NULL, "
-			+ " telefone varchar(12) NOT NULL, email varchar(80), "
-			+ " enabled integer NOT NULL DEFAULT '1', PRIMARY KEY(id))";
+			+ " (id integer , login varchar(50) NOT NULL UNIQUE, senha varchar(50) NOT NULL, dataNascimento date NOT NULL,"
+			+ " rg varchar(7) NOT NULL, cpf varchar(11) NOT NULL UNIQUE, sexo varchar(1) NOT NULL, "
+			+ " telefone varchar(12) NOT NULL, email varchar(80) UNIQUE, "
+			+ " enabled integer NOT NULL DEFAULT '1', id_endereco integer references endereco(id), PRIMARY KEY(id))";
 	
 	public DAOUsuario(){
 		super();
+		createTable();
 	}
 	
 	public void createTable(){
@@ -30,7 +32,7 @@ public class DAOUsuario extends DBConect{
 	}
 	
 	public void insertUsuario(int id, String login, String senha, String dataNascimento, 
-							  String rg, String cpf, String sexo, String telefone, String email){
+							  String rg, String cpf, String sexo, String telefone, String email,int id_endereco){
 		//abre conexao com banco
 			super.conect();
 		// prepara statement para executar query
@@ -38,9 +40,9 @@ public class DAOUsuario extends DBConect{
 		// query que será executada
 			String sql = "INSERT INTO "
 				+TABLE_NAME+"("+COLUMN_ID+","+COLUMN_LOGIN+","+COLUMN_SENHA+","+COLUMN_DATA_NASCIMENTO+","
-							   +COLUMN_RG+","+COLUMN_CPF+","+COLUMN_SEXO+","+COLUMN_TELEFONE+","+COLUMN_EMAIL+")"
+							   +COLUMN_RG+","+COLUMN_CPF+","+COLUMN_SEXO+","+COLUMN_TELEFONE+","+COLUMN_EMAIL+","+COLUMN_ID_ENDERECO+")"
 							   + " VALUES('"+id+"','"+login+"','"+senha+"','"+dataNascimento+"','"
-							   				+rg+",'"+cpf+",'"+sexo+",'"+telefone+"','"+email+"')";
+							   				+rg+",'"+cpf+",'"+sexo+",'"+telefone+"','"+email+"','"+id_endereco+"')";
 
 			try {
 				stmt = this.conn.createStatement();

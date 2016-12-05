@@ -91,7 +91,7 @@ public class CadastroController {
 
 	public void initComponents() {
 		tipoUsuarioOpcoes = FXCollections.observableArrayList();
-		tipoUsuarioOpcoes.addAll("Selecione", "Paciente","Recepcionista","Médico");
+		tipoUsuarioOpcoes.addAll("Selecione", "Paciente","Recepcionista","MÃ©dico");
 
 		tipoUsuario.getItems().clear();
 		tipoUsuario.setItems(tipoUsuarioOpcoes);
@@ -119,36 +119,29 @@ public class CadastroController {
 	@FXML
 	private void cadastrar(){
 
-		//Associando radioButton marcado à string Sexo
+		//Associando radioButton marcado ï¿½ string Sexo
 		if(sexoMasculino.isFocused()){
 			sexo = "Masculino";
-		}
-
-		if(sexoFeminino.isFocused()){
+		}else if(sexoFeminino.isFocused()){
 			sexo = "Feminino";
 		}
 
-		//Checando tipo de formulário
-		if(idCadastro == "Médico") {				
+		//Checando tipo de formulï¿½rio
+		if(idCadastro == "MÃ©dico") {				
 			//DAOMedico novoMedico;
-			System.out.println("Cadastrando Médico");
-		}
-
-
-		if(idCadastro == "Paciente") {
+			System.out.println("Cadastrando MÃ©dico");
+		}else if(idCadastro == "Paciente") {
 			//DAOPaciente novoPaciente;
 			System.out.println("Cadastrando Paciente");
-		} 
-
-		if(idCadastro == "Recepcionista"){																			
-			idRecepcionista++;	
-
+		}else if(idCadastro == "Recepcionista"){																			
+			//idRecepcionista++;	
+		
 //			while(validacaoFormularioRecepcionista() == false){
 //				validacaoFormularioRecepcionista();
 //			}																				
 
 /*		 			
-			//Iniciando inserção de usuarioRecepcionista na tabela Usuario
+			//Iniciando inserï¿½ï¿½o de usuarioRecepcionista na tabela Usuario
 			DAOUsuario usuarioRecepcionista = new DAOUsuario();
 
 			//Convertendo DatePicker para Date											
@@ -164,12 +157,12 @@ public class CadastroController {
 
 			}
 
-			//Inserção do endereço do Recepecionista na tabela Endereço
+			//Inserï¿½ï¿½o do endereï¿½o do Recepecionista na tabela Endereï¿½o
 			DAOEndereco enderecoRecepcionista = new DAOEndereco();
 			enderecoRecepcionista.insertEndereco(idRecepcionista, endereco.getText(), cidade.getText(), 
 					bairro.getText(), numeroResidencia);
 
-			//Inserção do recepcionista na tabela Recepcionista
+			//Inserï¿½ï¿½o do recepcionista na tabela Recepcionista
 			DAORecepcionista novoRecepcionista = new DAORecepcionista();
 			novoRecepcionista.insertRecepcionista(idRecepcionista, idRecepcionista, codigoId.getText().toString() );			
 		}					
@@ -216,7 +209,7 @@ public class CadastroController {
 		if (sexoMasculino.isFocused() && sexoFeminino.isFocused() || 
 				!sexoMasculino.isFocused() && !sexoFeminino.isFocused()) {
 
-			JOptionPane.showMessageDialog(null, "Selecione uma opção para informar o Sexo", 
+			JOptionPane.showMessageDialog(null, "Selecione uma opï¿½ï¿½o para informar o Sexo", 
 					"Erro", JOptionPane.ERROR_MESSAGE);
 			return false;			
 		}
@@ -232,7 +225,7 @@ public class CadastroController {
 					"Erro", JOptionPane.ERROR_MESSAGE);
 			return false;			
 		} else if(!telefone.getText().contains(numeros)){
-			JOptionPane.showMessageDialog(null, "O telefone deve conter apenas números", 
+			JOptionPane.showMessageDialog(null, "O telefone deve conter apenas nï¿½meros", 
 					"Erro", JOptionPane.ERROR_MESSAGE);
 			return false;
 		}
@@ -242,7 +235,7 @@ public class CadastroController {
 					"Erro", JOptionPane.ERROR_MESSAGE);
 			return false;			
 		} else if(!rg.getText().contains(numeros)){
-			JOptionPane.showMessageDialog(null, "O RG deve conter apenas números", 
+			JOptionPane.showMessageDialog(null, "O RG deve conter apenas nï¿½meros", 
 					"Erro", JOptionPane.ERROR_MESSAGE);
 			return false;
 		}
@@ -252,7 +245,7 @@ public class CadastroController {
 					"Erro", JOptionPane.ERROR_MESSAGE);
 			return false;			
 		} else if(!cpf.getText().contains(numeros)){
-			JOptionPane.showMessageDialog(null, "O CPF deve conter apenas números", 
+			JOptionPane.showMessageDialog(null, "O CPF deve conter apenas nï¿½meros", 
 					"Erro", JOptionPane.ERROR_MESSAGE);
 			return false;
 		}
@@ -276,17 +269,17 @@ public class CadastroController {
 		}
 
 		if (numResidencia.getText().isEmpty()) {
-			JOptionPane.showMessageDialog(null, "Informe um Número de Residência", 
+			JOptionPane.showMessageDialog(null, "Informe um Nï¿½mero de Residï¿½ncia", 
 					"Erro", JOptionPane.ERROR_MESSAGE);
 			return false;			
 		} else if(!numResidencia.getText().contains(numeros)){
-			JOptionPane.showMessageDialog(null, "O Número de Residência deve conter apenas números", 
+			JOptionPane.showMessageDialog(null, "O Nï¿½mero de Residï¿½ncia deve conter apenas nï¿½meros", 
 					"Erro", JOptionPane.ERROR_MESSAGE);
 			return false;
 		}
 
 		if (codigoId.getText().isEmpty()) {
-			JOptionPane.showMessageDialog(null, "Informe um código para o Recepcionista", 
+			JOptionPane.showMessageDialog(null, "Informe um cï¿½digo para o Recepcionista", 
 					"Erro", JOptionPane.ERROR_MESSAGE);
 			return false;			
 		}
@@ -295,7 +288,7 @@ public class CadastroController {
 	}
 
 
-	//Metodo para atualizar pane contendo formulário do tipo de Usuário
+	//Metodo para atualizar pane contendo formulï¿½rio do tipo de Usuï¿½rio
 	public void selecionarTipoUsuario(String tipoUsuario){				
 		painelCadastro.getChildren().clear();
 		if(tipoUsuario.equals(TipoUsuario.TIPO_MEDICO.getTipo())) {				

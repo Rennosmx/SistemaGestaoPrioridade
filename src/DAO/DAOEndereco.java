@@ -1,5 +1,6 @@
 package DAO;
 
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
@@ -10,15 +11,17 @@ public class DAOEndereco extends DBConect {
 	private static final String COLUMN_CEP = "cep";
 	private static final String COLUMN_BAIRRO = "bairro";
 	private static final String COLUMN_NUMERO = "numero";
+	private static final String COLUMN_ID_USER = "id_usuario";
 	private static final String CREATE_TABLE = "CREATE TABLE IF NOT EXISTS " +TABLE_NAME+""
 			+ " ("+COLUMN_ID+" integer , "+COLUMN_RUA+" varchar(50) NOT NULL, "
 			+COLUMN_CEP+" varchar(8) NOT NULL, "+COLUMN_BAIRRO+" varchar(50) NOT NULL,"
-			+ " "+COLUMN_NUMERO+" varchar(5) NOT NULL, enabled integer NOT NULL DEFAULT '1', PRIMARY KEY(id))";
+			+ " "+COLUMN_NUMERO+" varchar(5) NOT NULL, enabled integer NOT NULL DEFAULT '1', "+COLUMN_ID_USER+" integer references usuario(id), PRIMARY KEY(id))";
 	public DAOEndereco(){
 		super();
+		createTable();
 	}
 	
-	public void creatTable(){
+	public void createTable(){
 		super.createTable(CREATE_TABLE);
 	}
 	
@@ -35,6 +38,7 @@ public class DAOEndereco extends DBConect {
 		try {
 			stmt = this.conn.createStatement();
 			stmt.executeUpdate(sql);
+			 
 			System.out.println("endereco incluido com sucesso!");
 		} catch(SQLException e){
 			System.out.println("erro incluir endereco: " + e.getMessage());
