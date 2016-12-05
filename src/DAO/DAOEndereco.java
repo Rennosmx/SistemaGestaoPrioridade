@@ -4,6 +4,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import model.Endereco;
+
 public class DAOEndereco extends DBConect {
 	private static final String TABLE_NAME = "endereco";
 	private static final String COLUMN_ID = "id";
@@ -51,5 +53,36 @@ public class DAOEndereco extends DBConect {
 			}
 		}
 		super.disconect();
+	}
+	
+	public Endereco selectEndereco(String column, String value){
+		Endereco end = new Endereco();
+		
+		//abre conexao com banco
+		super.conect();
+		// prepara statement para executar query
+		Statement stmt = null;
+		// query que será executada
+		String sql = "SELECT * FROM "+TABLE_NAME+" WHERE "+column+" = "+value;
+		try {
+			stmt = this.conn.createStatement();
+			ResultSet rs = stmt.executeQuery(sql);
+			end.setBairro(rs.getString(COLUMN_BAIRRO));
+
+			 
+			System.out.println("endereco incluido com sucesso!");
+		} catch(SQLException e){
+			System.out.println("erro incluir endereco: " + e.getMessage());
+		} finally {
+			try {
+				// fecha o stmt
+				if(stmt != null) stmt.close();
+			} catch (SQLException e){
+				System.out.println("erro ao tentar fechar o stmt: " + e.getMessage());
+			}
+		}
+		super.disconect();
+		
+		return end;
 	}
 }
