@@ -16,7 +16,7 @@ public class DBConect {
 		
 	}
 	
-	public void createTable(String tableName){
+	public void createTable(String sql){
 		/*Statement stmt = null;
 		String sql = "CREATE TABLE IF NOT EXISTS " +tableName+" (id integer , name varchar(50) NOT NULL, pass varchar(50) NOT NULL, enabled integer NOT NULL DEFAULT '1', PRIMARY KEY(id))";
 		try{

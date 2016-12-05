@@ -10,9 +10,16 @@ public class DAOEndereco extends DBConect {
 	private static final String COLUMN_CEP = "cep";
 	private static final String COLUMN_BAIRRO = "bairro";
 	private static final String COLUMN_NUMERO = "numero";
-	
+	private static final String CREATE_TABLE = "CREATE TABLE IF NOT EXISTS " +TABLE_NAME+""
+			+ " ("+COLUMN_ID+" integer , "+COLUMN_RUA+" varchar(50) NOT NULL, "
+			+COLUMN_CEP+" varchar(8) NOT NULL, "+COLUMN_BAIRRO+" varchar(50) NOT NULL,"
+			+ " "+COLUMN_NUMERO+" varchar(5) NOT NULL, enabled integer NOT NULL DEFAULT '1', PRIMARY KEY(id))";
 	public DAOEndereco(){
-		
+		super();
+	}
+	
+	public void creatTable(){
+		super.createTable(CREATE_TABLE);
 	}
 	
 	public void insertEndereco(int id, String rua, String cep, String bairro, int numero){

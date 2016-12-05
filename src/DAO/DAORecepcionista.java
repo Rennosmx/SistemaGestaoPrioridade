@@ -8,9 +8,15 @@ public class DAORecepcionista extends DBConect{
 	private static final String COLUMN_ID = "id";	
 	private static final String COLUMN_USER_ID = "usuario_id";
 	private static final String COLUMN_CODIGO = "codigo";
+	private static final String CREATE_TABLE = "CREATE TABLE IF NOT EXISTS recepcionista"
+			+ " (id integer , usuario_id integer NOT NULL, codigo varchar(10) NOT NULL, enabled integer NOT NULL DEFAULT '1', PRIMARY KEY(id))";
 	
 	public DAORecepcionista(){
-		
+		super();
+	}
+	
+	public void createTable(){
+		super.createTable(CREATE_TABLE);
 	}
 	
 	public void insertRecepcionista(int colunm_id, int usuario_id, String codigo){

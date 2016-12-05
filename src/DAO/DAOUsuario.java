@@ -15,9 +15,18 @@ public class DAOUsuario extends DBConect{
 	private static final String COLUMN_SEXO = "sexo";
 	private static final String COLUMN_TELEFONE = "telefone";
 	private static final String COLUMN_EMAIL = "email";
+	private static final String CREATE_TABLE = "CREATE TABLE IF NOT EXISTS usuario"
+			+ " (id integer , login varchar(50) NOT NULL, senha varchar(50) NOT NULL, dataNascimento date NOT NULL,"
+			+ " rg varchar(7) NOT NULL, cpf varchar(11) NOT NULL, sexo varchar(1) NOT NULL, "
+			+ " telefone varchar(12) NOT NULL, email varchar(80), "
+			+ " enabled integer NOT NULL DEFAULT '1', PRIMARY KEY(id))";
 	
 	public DAOUsuario(){
-		
+		super();
+	}
+	
+	public void createTable(){
+		super.createTable(CREATE_TABLE);
 	}
 	
 	public void insertUsuario(int id, String login, String senha, String dataNascimento, 
