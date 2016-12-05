@@ -11,11 +11,8 @@ import view.LoginController;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 
-
-
 public class Main extends Application {
-	
-	
+		
 	private static Stage primaryStage;
 	private static AnchorPane telaLogin;
 	private static AnchorPane telaCadastro;		
