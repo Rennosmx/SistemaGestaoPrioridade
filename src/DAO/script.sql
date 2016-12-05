@@ -2,6 +2,7 @@ CREATE TABLE IF NOT EXISTS usuario (
 	id integer,
 	login varchar(50) NOT NULL UNIQUE,
 	senha varchar(50) NOT NULL,
+	nome varchar(100) NOT NULL,
 	dataNascimento Date NOT NULL,
 	rg varchar(10) NOT NULL,
 	cpf varchar(11) NOT NULL UNIQUE,

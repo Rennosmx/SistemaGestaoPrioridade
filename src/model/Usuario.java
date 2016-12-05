@@ -7,6 +7,7 @@ public class Usuario {
 	private int id;	
 	private String login;
 	private String senha;
+	private String nome;
 	private Date dataNascimento;
 	private String rg;
 	private String cpf;
@@ -14,9 +15,10 @@ public class Usuario {
 	private String telefone;
 	private String email;
 	
-	public Usuario(String login, String senha, Date dataNascimento, String rg, String cpf, String sexo, String telefone, String email){
+	public Usuario(String login, String senha, String nome, Date dataNascimento, String rg, String cpf, String sexo, String telefone, String email){
 		this.login = login;
 		this.senha = senha;
+		this.nome = nome;
 		this.dataNascimento = dataNascimento;
 		this.rg = rg;
 		this.cpf = cpf;
@@ -25,8 +27,16 @@ public class Usuario {
 		this.email = email;
 	}
 	
+	public Usuario(){
+		
+	}
+	
 	public int getId() {
 		return id;
+	}
+	
+	public void setId(int id){
+		this.id = id;
 	}
 	
 	public String getLogin() {
@@ -43,6 +53,14 @@ public class Usuario {
 	
 	public void setSenha(String senha) {
 		this.senha = senha;
+	}
+	
+	public String getNome(){
+		return this.nome;
+	}
+	
+	public void setNome(String nome){
+		this.nome = nome;
 	}
 
 	public Date getDataNascimento() {
@@ -85,4 +103,11 @@ public class Usuario {
 		this.telefone = telefone;
 	}
 	
+	public String getEmail(){
+		return this.email;
+	}
+	
+	public void setEmail(String email){
+		this.email = email;
+	}
 }
