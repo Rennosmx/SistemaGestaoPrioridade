@@ -35,7 +35,7 @@ public class CadastroController {
 	//Id do Formulario ativo
 	private static String idCadastro;
 
-	private static int idRecepcionista;
+	private static int idRecepcionista, idMedico, idPaciente;
 
 	private String sexo;
 
@@ -73,7 +73,7 @@ public class CadastroController {
 
 	//Campos especificos de Paciente
 	@FXML
-	private TextField prontuario, medicacao, alergia, descricaoLimitacao;
+	private TextField numProntuario, medicacao, alergia, descricaoLimitacao, estadoCivil;
 	@FXML
 	private CheckBox limitacaoCognitiva, limitacaoLocomocao, limitacaoVisao, limitacaoAudicao, limitacaoOutras;
 
@@ -126,6 +126,7 @@ public class CadastroController {
 			sexo = "Feminino";
 		}
 
+
 		//Checando tipo de formul�rio
 		if(idCadastro == "Médico") {				
 			//DAOMedico novoMedico;
@@ -140,16 +141,12 @@ public class CadastroController {
 //				validacaoFormularioRecepcionista();
 //			}																				
 
-/*		 			
-			//Iniciando inser��o de usuarioRecepcionista na tabela Usuario
-			DAOUsuario usuarioRecepcionista = new DAOUsuario();
 
-			//Convertendo DatePicker para Date											
-			String data = dataNascimento.getValue().format(DateTimeFormatter.ofPattern("dd-MM-yyyy"));
 
-			usuarioRecepcionista.insertUsuario(idRecepcionista, login.getText(), senha.getText(), data, 
-											   rg.getText(), cpf.getText(), sexo, telefone.getText(), email.getText());
- */												
+			
+
+
+					
 			int numeroResidencia = 0;
 			try{
 				numeroResidencia = Integer.parseInt(numResidencia.getText());
@@ -164,16 +161,312 @@ public class CadastroController {
 
 			//Inser��o do recepcionista na tabela Recepcionista
 			DAORecepcionista novoRecepcionista = new DAORecepcionista();
-			novoRecepcionista.insertRecepcionista(idRecepcionista, idRecepcionista, codigoId.getText().toString() );			
-		}					
+			novoRecepcionista.insertRecepcionista(idRecepcionista, idRecepcionista, codigoId.getText().toString() );		
+			 				
+		}
+
+
+		/*if(idCadastro == "Paciente") {
+			//DAOPaciente novoPaciente;			
+			idPaciente++;
+
+			//TRATAMENTO DE ERROS		
+			if (login.getText().isEmpty()) {
+				JOptionPane.showMessageDialog(null, "Informe um Login", 
+						"Erro", JOptionPane.ERROR_MESSAGE);
+				return;
+			}
+
+			if (senha.getText().isEmpty()) {
+				JOptionPane.showMessageDialog(null, "Informe uma senha", 
+						"Erro", JOptionPane.ERROR_MESSAGE);
+				return;		
+			}
+
+			if (nome.getText().isEmpty()) {
+				JOptionPane.showMessageDialog(null, "Informe um Nome", 
+						"Erro", JOptionPane.ERROR_MESSAGE);
+				return;	
+			}
+
+			if (dataNascimento.getValue() == null) {
+				JOptionPane.showMessageDialog(null, "Informe uma Data", 
+						"Erro", JOptionPane.ERROR_MESSAGE);
+				return;	
+			}
+
+
+			if (sexoMasculino.isSelected() && sexoFeminino.isSelected() || 
+					!sexoMasculino.isSelected() && !sexoFeminino.isSelected()) {
+
+				JOptionPane.showMessageDialog(null, "Selecione uma opção para informar o Sexo", 
+						"Erro", JOptionPane.ERROR_MESSAGE);
+				return;	
+			}
+
+			if (estadoCivil.getText().isEmpty()) {
+				JOptionPane.showMessageDialog(null, "Informe um Estado Civil", 
+						"Erro", JOptionPane.ERROR_MESSAGE);
+				return;		
+			}
+						
+			if (telefone.getText().isEmpty()) {
+				JOptionPane.showMessageDialog(null, "Informe um Telefone", 
+						"Erro", JOptionPane.ERROR_MESSAGE);
+				return;
+
+			} else if(!telefone.getText().matches("[0-9]*")){
+				JOptionPane.showMessageDialog(null, "O telefone deve conter apenas números", 
+						"Erro", JOptionPane.ERROR_MESSAGE);
+				return;
+			}
+
+			if (rg.getText().isEmpty()) {
+				JOptionPane.showMessageDialog(null, "Informe um RG", 
+						"Erro", JOptionPane.ERROR_MESSAGE);
+				return;			
+			} else if(!rg.getText().matches("[0-9]*")){
+				JOptionPane.showMessageDialog(null, "O RG deve conter apenas números", 
+						"Erro", JOptionPane.ERROR_MESSAGE);
+				return;
+			}
+
+			if (cpf.getText().isEmpty()) {
+				JOptionPane.showMessageDialog(null, "Informe um CPF", 
+						"Erro", JOptionPane.ERROR_MESSAGE);
+				return;
+			} else if(!cpf.getText().matches("[0-9]*")){
+				JOptionPane.showMessageDialog(null, "O CPF deve conter apenas números", 
+						"Erro", JOptionPane.ERROR_MESSAGE);
+				return;
+			}
+
+			if (bairro.getText().isEmpty()) {
+				JOptionPane.showMessageDialog(null, "Informe um Bairro", 
+						"Erro", JOptionPane.ERROR_MESSAGE);
+				return;			
+			}
+
+			if (cidade.getText().isEmpty()) {
+				JOptionPane.showMessageDialog(null, "Informe um Cidade", 
+						"Erro", JOptionPane.ERROR_MESSAGE);
+				return;			
+			}
+
+			if (endereco.getText().isEmpty()) {
+				JOptionPane.showMessageDialog(null, "Informe um Endereco", 
+						"Erro", JOptionPane.ERROR_MESSAGE);
+				return;			
+			}
+
+			if (numResidencia.getText().isEmpty()) {
+				JOptionPane.showMessageDialog(null, "Informe um Número de Residência", 
+						"Erro", JOptionPane.ERROR_MESSAGE);
+				return;			
+			} else if(!numResidencia.getText().matches("[0-9]*")){
+				JOptionPane.showMessageDialog(null, "O Número de Resid�ncia deve conter apenas números", 
+						"Erro", JOptionPane.ERROR_MESSAGE);
+				return;
+			}
+
+			if (numProntuario.getText().isEmpty()) {
+				JOptionPane.showMessageDialog(null, "Informe o Prontuário para o Paciente", 
+						"Erro", JOptionPane.ERROR_MESSAGE);
+				return;		
+			} else if(!numProntuario.getText().matches("[0-9]*")){
+				JOptionPane.showMessageDialog(null, "O Prontuario deve conter apenas números", 
+						"Erro", JOptionPane.ERROR_MESSAGE);
+				return;
+			}
+			
+			if (email.getText().isEmpty()) {
+				JOptionPane.showMessageDialog(null, "Informe o E-mail para o Paciente", 
+						"Erro", JOptionPane.ERROR_MESSAGE);
+				return;		
+			}
+			
+		} 
+
+		if(idCadastro == "Recepcionista"){																			
+			idRecepcionista++;	
+
+
+			//TRATAMENTO DE ERROS		
+			if (login.getText().isEmpty()) {
+				JOptionPane.showMessageDialog(null, "Informe um Login", 
+						"Erro", JOptionPane.ERROR_MESSAGE);
+				return;
+			}
+
+			if (senha.getText().isEmpty()) {
+				JOptionPane.showMessageDialog(null, "Informe uma senha", 
+						"Erro", JOptionPane.ERROR_MESSAGE);
+				return;		
+			}
+
+			if (nome.getText().isEmpty()) {
+				JOptionPane.showMessageDialog(null, "Informe um Nome", 
+						"Erro", JOptionPane.ERROR_MESSAGE);
+				return;	
+			}
+
+			if (dataNascimento.getValue() == null) {
+				JOptionPane.showMessageDialog(null, "Informe uma Data", 
+						"Erro", JOptionPane.ERROR_MESSAGE);
+				return;	
+			}
+
+			if (sexoMasculino.isSelected() && sexoFeminino.isSelected() || 
+					!sexoMasculino.isSelected() && !sexoFeminino.isSelected()) {
+
+				JOptionPane.showMessageDialog(null, "Selecione uma opçãoo para informar o Sexo", 
+						"Erro", JOptionPane.ERROR_MESSAGE);
+				return;	
+			}
+
+			if (email.getText().isEmpty()) {
+				JOptionPane.showMessageDialog(null, "Informe um E-mail", 
+						"Erro", JOptionPane.ERROR_MESSAGE);
+				return;		
+			}
+
+			if (telefone.getText().isEmpty()) {
+				JOptionPane.showMessageDialog(null, "Informe um Telefone", 
+						"Erro", JOptionPane.ERROR_MESSAGE);
+				
+
+			} else if(!telefone.getText().matches("[0-9]*")){
+				JOptionPane.showMessageDialog(null, "O telefone deve conter apenas números", 
+						"Erro", JOptionPane.ERROR_MESSAGE);
+				
+			}
+
+
+			JOptionPane.showMessageDialog(null, "Selecione uma opção para informar o Sexo", 
+					"Erro", JOptionPane.ERROR_MESSAGE);
+						
+		}
+			if (rg.getText().isEmpty()) {
+				JOptionPane.showMessageDialog(null, "Informe um RG", 
+						"Erro", JOptionPane.ERROR_MESSAGE);
+						
+			} else if(!rg.getText().matches("[0-9]*")){
+				JOptionPane.showMessageDialog(null, "O RG deve conter apenas números", 
+						"Erro", JOptionPane.ERROR_MESSAGE);
+				
+			}
+
+			if (cpf.getText().isEmpty()) {
+				JOptionPane.showMessageDialog(null, "Informe um CPF", 
+						"Erro", JOptionPane.ERROR_MESSAGE);
+				
+			} else if(!cpf.getText().matches("[0-9]*")){
+				JOptionPane.showMessageDialog(null, "O CPF deve conter apenas números", 
+						"Erro", JOptionPane.ERROR_MESSAGE);
+				
+			}
+
+		if (telefone.getText().isEmpty()) {
+			JOptionPane.showMessageDialog(null, "Informe um Telefone", 
+					"Erro", JOptionPane.ERROR_MESSAGE);
+					
+		} else if(!telefone.getText().contains("0123456789")){
+			JOptionPane.showMessageDialog(null, "O telefone deve conter apenas números", 
+					"Erro", JOptionPane.ERROR_MESSAGE);
+		
+		}
+
+		if (rg.getText().isEmpty()) {
+			JOptionPane.showMessageDialog(null, "Informe um RG", 
+					"Erro", JOptionPane.ERROR_MESSAGE);
+						
+		} else if(!rg.getText().contains("0123456789")){
+			JOptionPane.showMessageDialog(null, "O RG deve conter apenas n�meros", 
+					"Erro", JOptionPane.ERROR_MESSAGE);
+	
+		}
+
+		if (cpf.getText().isEmpty()) {
+			JOptionPane.showMessageDialog(null, "Informe um CPF", 
+					"Erro", JOptionPane.ERROR_MESSAGE);
+				
+		} else if(!cpf.getText().contains("0123456789")){
+			JOptionPane.showMessageDialog(null, "O CPF deve conter apenas n�meros", 
+					"Erro", JOptionPane.ERROR_MESSAGE);
+			
+		}
+
+			if (bairro.getText().isEmpty()) {
+				JOptionPane.showMessageDialog(null, "Informe um Bairro", 
+						"Erro", JOptionPane.ERROR_MESSAGE);
+							
+			}
+
+			if (cidade.getText().isEmpty()) {
+				JOptionPane.showMessageDialog(null, "Informe um Cidade", 
+						"Erro", JOptionPane.ERROR_MESSAGE);
+						
+			}
+
+			if (endereco.getText().isEmpty()) {
+				JOptionPane.showMessageDialog(null, "Informe um Endereco", 
+						"Erro", JOptionPane.ERROR_MESSAGE);
+						
+			}
+
+			if (numResidencia.getText().isEmpty()) {
+				JOptionPane.showMessageDialog(null, "Informe um N�mero de Resid�ncia", 
+						"Erro", JOptionPane.ERROR_MESSAGE);
+						
+			} else if(!numResidencia.getText().matches("[0-9]*")){
+				JOptionPane.showMessageDialog(null, "O N�mero de Resid�ncia deve conter apenas n�meros", 
+						"Erro", JOptionPane.ERROR_MESSAGE);
+				
+			}
+
+			if (codigoId.getText().isEmpty()) {
+				JOptionPane.showMessageDialog(null, "Informe um c�digo para o Recepcionista", 
+						"Erro", JOptionPane.ERROR_MESSAGE);
+					
+			}
+
+		if (numResidencia.getText().isEmpty()) {
+			JOptionPane.showMessageDialog(null, "Informe um N�mero de Resid�ncia", 
+					"Erro", JOptionPane.ERROR_MESSAGE);
+						
+		} else if(!numResidencia.getText().contains("0123456789")){
+			JOptionPane.showMessageDialog(null, "O N�mero de Resid�ncia deve conter apenas n�meros", 
+					"Erro", JOptionPane.ERROR_MESSAGE);
+			
+		}
+
+		if (codigoId.getText().isEmpty()) {
+			JOptionPane.showMessageDialog(null, "Informe um c�digo para o Recepcionista", 
+					"Erro", JOptionPane.ERROR_MESSAGE);		
+		}
+
+			/*		 			
+			//Iniciando inser��o de usuarioRecepcionista na tabela Usuario
+			DAOUsuario usuarioRecepcionista = new DAOUsuario();
+
+			//Convertendo DatePicker para Date											
+			String data = dataNascimento.getValue().format(DateTimeFormatter.ofPattern("dd-MM-yyyy"));
+
+			usuarioRecepcionista.insertUsuario(idRecepcionista, login.getText(), senha.getText(), data, 
+											   rg.getText(), cpf.getText(), sexo, telefone.getText(), email.getText());
+			 */												
+			/*int numeroResidencia = 0;
+			try{
+				numeroResidencia = Integer.parseInt(numResidencia.getText());
+			}catch(NumberFormatException ex){
+
+			}*/
+				
 
 	}
 
 
-	public boolean validacaoFormularioRecepcionista(){
-
-		String numeros = "01234567989";
-
+	public boolean validacaoFormulario(){
 
 		//TRATAMENTO DE ERROS		
 		if (login.getText().isEmpty()) {
@@ -191,41 +484,36 @@ public class CadastroController {
 		if (nome.getText().isEmpty()) {
 			JOptionPane.showMessageDialog(null, "Informe um Nome", 
 					"Erro", JOptionPane.ERROR_MESSAGE);
-			return false;			
+			return false;	
 		}
 
 		if (dataNascimento.getValue() == null) {
 			JOptionPane.showMessageDialog(null, "Informe uma Data", 
 					"Erro", JOptionPane.ERROR_MESSAGE);
-			return false;			
+			return false;	
 		}
 
-		if (nome.getText().isEmpty()) {
-			JOptionPane.showMessageDialog(null, "Informe um Nome", 
-					"Erro", JOptionPane.ERROR_MESSAGE);
-			return false;			
-		}
+		if (sexoMasculino.isSelected() && sexoFeminino.isSelected() || 
+				!sexoMasculino.isSelected() && !sexoFeminino.isSelected()) {
 
-		if (sexoMasculino.isFocused() && sexoFeminino.isFocused() || 
-				!sexoMasculino.isFocused() && !sexoFeminino.isFocused()) {
-
-			JOptionPane.showMessageDialog(null, "Selecione uma op��o para informar o Sexo", 
+			JOptionPane.showMessageDialog(null, "Selecione uma opção para informar o Sexo", 
 					"Erro", JOptionPane.ERROR_MESSAGE);
-			return false;			
+			return false;	
 		}
 
 		if (email.getText().isEmpty()) {
 			JOptionPane.showMessageDialog(null, "Informe um E-mail", 
 					"Erro", JOptionPane.ERROR_MESSAGE);
-			return false;			
+			return false;		
 		}
 
 		if (telefone.getText().isEmpty()) {
 			JOptionPane.showMessageDialog(null, "Informe um Telefone", 
 					"Erro", JOptionPane.ERROR_MESSAGE);
-			return false;			
-		} else if(!telefone.getText().contains(numeros)){
-			JOptionPane.showMessageDialog(null, "O telefone deve conter apenas n�meros", 
+			return false;
+
+		} else if(!telefone.getText().matches("[0-9]*")){
+			JOptionPane.showMessageDialog(null, "O telefone deve conter apenas números", 
 					"Erro", JOptionPane.ERROR_MESSAGE);
 			return false;
 		}
@@ -234,8 +522,8 @@ public class CadastroController {
 			JOptionPane.showMessageDialog(null, "Informe um RG", 
 					"Erro", JOptionPane.ERROR_MESSAGE);
 			return false;			
-		} else if(!rg.getText().contains(numeros)){
-			JOptionPane.showMessageDialog(null, "O RG deve conter apenas n�meros", 
+		} else if(!rg.getText().matches("[0-9]*")){
+			JOptionPane.showMessageDialog(null, "O RG deve conter apenas números", 
 					"Erro", JOptionPane.ERROR_MESSAGE);
 			return false;
 		}
@@ -243,9 +531,9 @@ public class CadastroController {
 		if (cpf.getText().isEmpty()) {
 			JOptionPane.showMessageDialog(null, "Informe um CPF", 
 					"Erro", JOptionPane.ERROR_MESSAGE);
-			return false;			
-		} else if(!cpf.getText().contains(numeros)){
-			JOptionPane.showMessageDialog(null, "O CPF deve conter apenas n�meros", 
+			return false;
+		} else if(!cpf.getText().matches("[0-9]*")){
+			JOptionPane.showMessageDialog(null, "O CPF deve conter apenas números", 
 					"Erro", JOptionPane.ERROR_MESSAGE);
 			return false;
 		}
@@ -269,21 +557,29 @@ public class CadastroController {
 		}
 
 		if (numResidencia.getText().isEmpty()) {
-			JOptionPane.showMessageDialog(null, "Informe um N�mero de Resid�ncia", 
+			JOptionPane.showMessageDialog(null, "Informe um Número de Residência", 
 					"Erro", JOptionPane.ERROR_MESSAGE);
 			return false;			
-		} else if(!numResidencia.getText().contains(numeros)){
-			JOptionPane.showMessageDialog(null, "O N�mero de Resid�ncia deve conter apenas n�meros", 
+		} else if(!numResidencia.getText().matches("[0-9]*")){
+			JOptionPane.showMessageDialog(null, "O Número de Residência deve conter apenas números", 
 					"Erro", JOptionPane.ERROR_MESSAGE);
 			return false;
 		}
 
-		if (codigoId.getText().isEmpty()) {
-			JOptionPane.showMessageDialog(null, "Informe um c�digo para o Recepcionista", 
+		/*if (crm.getText().isEmpty()) {
+			JOptionPane.showMessageDialog(null, "Informe um CRM para o Médico", 
 					"Erro", JOptionPane.ERROR_MESSAGE);
-			return false;			
+			return false;		
+		} else if(!crm.getText().matches("[0-9]*")){
+			JOptionPane.showMessageDialog(null, "O CRM deve conter apenas números", 
+					"Erro", JOptionPane.ERROR_MESSAGE);
+			return false;
 		}
-
+		if (especialidade.getText().isEmpty()) {
+			JOptionPane.showMessageDialog(null, "Informe uma especialidade para o Médico", 
+					"Erro", JOptionPane.ERROR_MESSAGE);
+			return false;		
+		}*/
 		return true;
 	}
 
