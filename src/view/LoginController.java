@@ -2,6 +2,7 @@ package view;
 
 import javax.swing.JOptionPane;
 
+
 import DAO.DAOUsuario;
 import DAO.DBConect;
 import application.Main;
@@ -38,7 +39,7 @@ public class LoginController {
 				}
 				//USUARIO DO TIPO PACIENTE
 				else if(usuario.getIdTipoUsuario() == 1){
-					//Main.mostraTelaInicialPaciente();
+					Main.mostraTelaInicialPaciente();
 					
 				}
 				//USUARIO DO TIPO RECEPCIONISTA

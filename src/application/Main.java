@@ -3,6 +3,7 @@ package application;
 import java.io.IOException;
 
 
+
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.stage.Stage;
@@ -15,7 +16,8 @@ public class Main extends Application {
 		
 	private static Stage primaryStage;
 	private static AnchorPane telaLogin;
-	private static AnchorPane telaCadastro;		
+	private static AnchorPane telaCadastro;
+	private static AnchorPane telaInicialPaciente;	
 	
 	@Override
 	public void start(Stage primaryStage) {		
@@ -40,8 +42,6 @@ public class Main extends Application {
             primaryStage.setResizable(false);            
             primaryStage.show();
 			       
-           // LoginController controller = loader.getController();
-            //controller.setMain(this);
             
             
 		} catch (IOException e) {
@@ -62,8 +62,25 @@ public class Main extends Application {
             primaryStage.setResizable(false);            
             primaryStage.show();
             
-            //CadastroController controller = loader.getController();
-            //controller.setMain(this);
+            
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public static void mostraTelaInicialPaciente(){
+		
+		try {
+			 // Carrega a tela de login
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(Main.class.getResource("/view/TelaInicialPaciente.fxml"));					
+			telaInicialPaciente = (AnchorPane) loader.load();
+															
+			Scene scene = new Scene(telaInicialPaciente);
+            primaryStage.setScene(scene);
+            primaryStage.setResizable(false);            
+            primaryStage.show();
+            
             
 		} catch (IOException e) {
 			e.printStackTrace();
