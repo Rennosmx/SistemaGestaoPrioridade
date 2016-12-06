@@ -19,10 +19,11 @@ public class DAOUsuario extends DBConect{
 	private static final String COLUMN_SEXO = "sexo";
 	private static final String COLUMN_TELEFONE = "telefone";
 	private static final String COLUMN_EMAIL = "email";
+	private static final String COLUMN_ID_TIPO_USUARIO = "idTipoUsuario";
 	private static final String CREATE_TABLE = "CREATE TABLE IF NOT EXISTS usuario"
 			+ " (id integer , login varchar(50) NOT NULL UNIQUE, senha varchar(50) NOT NULL, nome varchar(100) NOT NULL, dataNascimento date NOT NULL,"
 			+ " rg varchar(7) NOT NULL, cpf varchar(11) NOT NULL UNIQUE, sexo varchar(1) NOT NULL, "
-			+ " telefone varchar(12) NOT NULL, email varchar(80) UNIQUE, "
+			+ " telefone varchar(12) NOT NULL, email varchar(80) UNIQUE, idTipoUsuario integer, "
 			+ " enabled integer NOT NULL DEFAULT '1', PRIMARY KEY(id))";
 	
 	public DAOUsuario(){
@@ -35,7 +36,7 @@ public class DAOUsuario extends DBConect{
 	}
 	
 	public void insertUsuario(int id, String login, String senha, String nome, String dataNascimento, 
-							  String rg, String cpf, String sexo, String telefone, String email){
+							  String rg, String cpf, String sexo, String telefone, String email, String idTipoUsuario){
 		//abre conexao com banco
 			super.conect();
 		// prepara statement para executar query
@@ -43,9 +44,10 @@ public class DAOUsuario extends DBConect{
 		// query que será executada
 			String sql = "INSERT INTO "
 				+TABLE_NAME+"("+COLUMN_ID+","+COLUMN_LOGIN+","+COLUMN_SENHA+","+COLUMN_NOME+","+COLUMN_DATA_NASCIMENTO+","
-							   +COLUMN_RG+","+COLUMN_CPF+","+COLUMN_SEXO+","+COLUMN_TELEFONE+","+COLUMN_EMAIL+")"
+							   +COLUMN_RG+","+COLUMN_CPF+","+COLUMN_SEXO+","+COLUMN_TELEFONE+","+COLUMN_EMAIL+","
+							   +COLUMN_ID_TIPO_USUARIO+")"
 							   + " VALUES('"+id+"','"+login+"','"+senha+"','"+nome+"','"+dataNascimento+"','"
-							   				+rg+",'"+cpf+",'"+sexo+",'"+telefone+"','"+email+"')";
+							   				+rg+",'"+cpf+",'"+sexo+",'"+telefone+"','"+email+"','"+idTipoUsuario+"')";
 
 			try {
 				stmt = this.conn.createStatement();
@@ -85,6 +87,7 @@ public class DAOUsuario extends DBConect{
 			user.setRg(rs.getString(COLUMN_RG));
 			user.setSexo(rs.getString(COLUMN_SEXO));
 			user.setEmail(rs.getString(COLUMN_EMAIL));
+			user.setIdTipoUsuario(rs.getInt(COLUMN_ID_TIPO_USUARIO));
 			user.setTelefone(rs.getString(COLUMN_TELEFONE));
 			System.out.println("pesquisa feita!");
 		} catch(SQLException e){
@@ -123,6 +126,7 @@ public class DAOUsuario extends DBConect{
 			user.setRg(rs.getString(COLUMN_RG));
 			user.setSexo(rs.getString(COLUMN_SEXO));
 			user.setEmail(rs.getString(COLUMN_EMAIL));
+			user.setIdTipoUsuario(rs.getInt(COLUMN_ID_TIPO_USUARIO));
 			user.setTelefone(rs.getString(COLUMN_TELEFONE));
 			System.out.println("pesquisa feita!");
 		} catch(SQLException e){

@@ -14,8 +14,11 @@ public class Usuario {
 	private String sexo;
 	private String telefone;
 	private String email;
+	private int idTipoUsuario;
 	
-	public Usuario(String login, String senha, String nome, Date dataNascimento, String rg, String cpf, String sexo, String telefone, String email){
+	public Usuario(String login, String senha, String nome, Date dataNascimento, 
+			String rg, String cpf, String sexo, String telefone, String email){
+		
 		this.login = login;
 		this.senha = senha;
 		this.nome = nome;
@@ -110,4 +113,15 @@ public class Usuario {
 	public void setEmail(String email){
 		this.email = email;
 	}
+
+	public int getIdTipoUsuario() {
+		return idTipoUsuario;
+	}
+
+	public void setIdTipoUsuario(int idTipoUsuario) {
+		this.idTipoUsuario = idTipoUsuario;
+	}
+
+	
+	
 }

@@ -28,15 +28,18 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import model.TipoUsuario;
+import model.Usuario;
 
 
 public class CadastroController {
 
 	//Id do Formulario ativo
 	private static String idCadastro;
-
+		
 	private static int idRecepcionista, idMedico, idPaciente;
 
+	private Usuario usuarioCadastrado;
+	
 	private String sexo;
 
 	@FXML
@@ -246,6 +249,7 @@ public class CadastroController {
 			}
 
 			//INSERÇÃO NAS TABELAS DO USUARIO MÉDICO
+			//usuarioCadastrado.setIdTipoUsuario(0);
 			
 			
 		}else if(idCadastro == "Paciente") {
@@ -367,11 +371,11 @@ public class CadastroController {
 			}
 			
 			//INSERÇÃO NAS TABELAS DO USUÁRIO PACIENTE
+			//usuarioCadastrado.setIdTipoUsuario(1);
 			
 		}else if(idCadastro == "Recepcionista"){
 
 			idRecepcionista++;	
-
 
 			//TRATAMENTO DE ERROS		
 			if (login.getText().isEmpty()) {
@@ -479,6 +483,7 @@ public class CadastroController {
 
 
 			//INSERÇÃO NAS TABELAS DO USUARIO RECEPCIONISTA
+			//usuarioCadastrado.setIdTipoUsuario(2);
 			
 			int numeroResidencia = 0;
 			try{

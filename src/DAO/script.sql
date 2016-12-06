@@ -9,6 +9,7 @@ CREATE TABLE IF NOT EXISTS usuario (
 	sexo varchar(1) NOT NULL,
 	telefone varchar(11) NOT NULL,
 	email varchar(100) NOT NULL UNIQUE,
+	idTipoUsuario integer,
 	id_endereco integer references endereco(id),
 	PRIMARY KEY(id)
 );
