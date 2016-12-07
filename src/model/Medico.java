@@ -12,6 +12,10 @@ public class Medico extends Usuario{
 		this.especialidade = especialidade;
 	}
 	
+	public Medico(){
+		super();
+	}
+	
 	public void setCRM(String CRM){
 		this.CRM = CRM;
 	}
