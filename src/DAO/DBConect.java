@@ -17,8 +17,9 @@ public class DBConect {
 	}
 	
 	public void createTable(String sql){
-		/*Statement stmt = null;
-		String sql = "CREATE TABLE IF NOT EXISTS " +tableName+" (id integer , name varchar(50) NOT NULL, pass varchar(50) NOT NULL, enabled integer NOT NULL DEFAULT '1', PRIMARY KEY(id))";
+		Statement stmt = null;
+		//String sql = "CREATE TABLE IF NOT EXISTS " +tableName+" (id integer , name varchar(50) NOT NULL, pass varchar(50) NOT NULL, enabled integer NOT NULL DEFAULT '1', PRIMARY KEY(id))";
+		conect();
 		try{
 			stmt = this.conn.createStatement();
 			stmt.executeUpdate(sql);
@@ -32,7 +33,8 @@ public class DBConect {
 			} catch (SQLException e){
 				System.out.println("erro ao tentar fechar o stmt: " + e.getMessage());
 			}
-		}*/
+		}
+		disconect();
 	}
 	public void conect(){
 		try{

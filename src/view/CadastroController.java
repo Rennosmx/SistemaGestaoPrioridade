@@ -2,6 +2,7 @@ package view;
 
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
@@ -37,7 +38,11 @@ public class CadastroController {
 	private static String idCadastro;
 		
 	private static int idRecepcionista, idMedico, idPaciente;
-
+	
+	private static final int ID_PACIENTE = 1;
+	private static final int ID_RECEPCIONISTA = 2;
+	private static final int ID_MEDICO = 3;
+	
 	private Usuario usuarioCadastrado;
 	
 	private String sexo;
@@ -122,16 +127,18 @@ public class CadastroController {
 	@FXML
 	private void cadastrar(){
 
-		//Associando radioButton marcado à string Sexo
-		if(sexoMasculino.isFocused()){
-			sexo = "Masculino";
-		}else if(sexoFeminino.isFocused()){
-			sexo = "Feminino";
+		//Associando radioButton marcado ï¿½ string Sexo
+		if(sexoMasculino.isSelected()){
+			sexo = "M";
+			System.out.println("MACHO");
+		}else if(sexoFeminino.isSelected()){
+			sexo = "F";
+			System.out.println("FEMEA");
 		}
 
 
-		//Checando tipo de formulário
-		if(idCadastro == "Médico") {				
+		//Checando tipo de formulï¿½rio
+		if(idCadastro == "Mï¿½dico") {				
 			//DAOMedico novoMedico;
 			idMedico++;
 
@@ -163,7 +170,7 @@ public class CadastroController {
 			if (sexoMasculino.isSelected() && sexoFeminino.isSelected() || 
 					!sexoMasculino.isSelected() && !sexoFeminino.isSelected()) {
 
-				JOptionPane.showMessageDialog(null, "Selecione uma opção para informar o Sexo", 
+				JOptionPane.showMessageDialog(null, "Selecione uma opï¿½ï¿½o para informar o Sexo", 
 						"Erro", JOptionPane.ERROR_MESSAGE);
 				return;	
 			}
@@ -180,7 +187,7 @@ public class CadastroController {
 				return;
 
 			} else if(!telefone.getText().matches("[0-9]*")){
-				JOptionPane.showMessageDialog(null, "O telefone deve conter apenas números", 
+				JOptionPane.showMessageDialog(null, "O telefone deve conter apenas nï¿½meros", 
 						"Erro", JOptionPane.ERROR_MESSAGE);
 				return;
 			}
@@ -190,7 +197,7 @@ public class CadastroController {
 						"Erro", JOptionPane.ERROR_MESSAGE);
 				return;			
 			} else if(!rg.getText().matches("[0-9]*")){
-				JOptionPane.showMessageDialog(null, "O RG deve conter apenas números", 
+				JOptionPane.showMessageDialog(null, "O RG deve conter apenas nï¿½meros", 
 						"Erro", JOptionPane.ERROR_MESSAGE);
 				return;
 			}
@@ -200,7 +207,7 @@ public class CadastroController {
 						"Erro", JOptionPane.ERROR_MESSAGE);
 				return;
 			} else if(!cpf.getText().matches("[0-9]*")){
-				JOptionPane.showMessageDialog(null, "O CPF deve conter apenas números", 
+				JOptionPane.showMessageDialog(null, "O CPF deve conter apenas nï¿½meros", 
 						"Erro", JOptionPane.ERROR_MESSAGE);
 				return;
 			}
@@ -224,31 +231,31 @@ public class CadastroController {
 			}
 
 			if (numResidencia.getText().isEmpty()) {
-				JOptionPane.showMessageDialog(null, "Informe um Número de Residência", 
+				JOptionPane.showMessageDialog(null, "Informe um Nï¿½mero de Residï¿½ncia", 
 						"Erro", JOptionPane.ERROR_MESSAGE);
 				return;			
 			} else if(!numResidencia.getText().matches("[0-9]*")){
-				JOptionPane.showMessageDialog(null, "O Número de Residência deve conter apenas números", 
+				JOptionPane.showMessageDialog(null, "O Nï¿½mero de Residï¿½ncia deve conter apenas nï¿½meros", 
 						"Erro", JOptionPane.ERROR_MESSAGE);
 				return;
 			}
 
 			if (crm.getText().isEmpty()) {
-				JOptionPane.showMessageDialog(null, "Informe um CRM para o Médico", 
+				JOptionPane.showMessageDialog(null, "Informe um CRM para o Mï¿½dico", 
 						"Erro", JOptionPane.ERROR_MESSAGE);
 				return;		
 			} else if(!crm.getText().matches("[0-9]*")){
-				JOptionPane.showMessageDialog(null, "O CRM deve conter apenas números", 
+				JOptionPane.showMessageDialog(null, "O CRM deve conter apenas nï¿½meros", 
 						"Erro", JOptionPane.ERROR_MESSAGE);
 				return;
 			}
 			if (especialidade.getText().isEmpty()) {
-				JOptionPane.showMessageDialog(null, "Informe uma especialidade para o Médico", 
+				JOptionPane.showMessageDialog(null, "Informe uma especialidade para o Mï¿½dico", 
 						"Erro", JOptionPane.ERROR_MESSAGE);
 				return;		
 			}
 
-			//INSERÇÃO NAS TABELAS DO USUARIO MÉDICO
+			//INSERï¿½ï¿½O NAS TABELAS DO USUARIO Mï¿½DICO
 			//usuarioCadastrado.setIdTipoUsuario(0);
 			
 			
@@ -284,7 +291,7 @@ public class CadastroController {
 			if (sexoMasculino.isSelected() && sexoFeminino.isSelected() || 
 					!sexoMasculino.isSelected() && !sexoFeminino.isSelected()) {
 
-				JOptionPane.showMessageDialog(null, "Selecione uma opção para informar o Sexo", 
+				JOptionPane.showMessageDialog(null, "Selecione uma opï¿½ï¿½o para informar o Sexo", 
 						"Erro", JOptionPane.ERROR_MESSAGE);
 				return;	
 			}
@@ -301,7 +308,7 @@ public class CadastroController {
 				return;
 
 			} else if(!telefone.getText().matches("[0-9]*")){
-				JOptionPane.showMessageDialog(null, "O telefone deve conter apenas números", 
+				JOptionPane.showMessageDialog(null, "O telefone deve conter apenas nï¿½meros", 
 						"Erro", JOptionPane.ERROR_MESSAGE);
 				return;
 			}
@@ -311,7 +318,7 @@ public class CadastroController {
 						"Erro", JOptionPane.ERROR_MESSAGE);
 				return;			
 			} else if(!rg.getText().matches("[0-9]*")){
-				JOptionPane.showMessageDialog(null, "O RG deve conter apenas números", 
+				JOptionPane.showMessageDialog(null, "O RG deve conter apenas nï¿½meros", 
 						"Erro", JOptionPane.ERROR_MESSAGE);
 				return;
 			}
@@ -321,7 +328,7 @@ public class CadastroController {
 						"Erro", JOptionPane.ERROR_MESSAGE);
 				return;
 			} else if(!cpf.getText().matches("[0-9]*")){
-				JOptionPane.showMessageDialog(null, "O CPF deve conter apenas números", 
+				JOptionPane.showMessageDialog(null, "O CPF deve conter apenas nï¿½meros", 
 						"Erro", JOptionPane.ERROR_MESSAGE);
 				return;
 			}
@@ -345,21 +352,21 @@ public class CadastroController {
 			}
 
 			if (numResidencia.getText().isEmpty()) {
-				JOptionPane.showMessageDialog(null, "Informe um Número de Residência", 
+				JOptionPane.showMessageDialog(null, "Informe um Nï¿½mero de Residï¿½ncia", 
 						"Erro", JOptionPane.ERROR_MESSAGE);
 				return;			
 			} else if(!numResidencia.getText().matches("[0-9]*")){
-				JOptionPane.showMessageDialog(null, "O Número de Residência deve conter apenas números", 
+				JOptionPane.showMessageDialog(null, "O Nï¿½mero de Residï¿½ncia deve conter apenas nï¿½meros", 
 						"Erro", JOptionPane.ERROR_MESSAGE);
 				return;
 			}
 
 			if (numProntuario.getText().isEmpty()) {
-				JOptionPane.showMessageDialog(null, "Informe o Prontuário para o Paciente", 
+				JOptionPane.showMessageDialog(null, "Informe o Prontuï¿½rio para o Paciente", 
 						"Erro", JOptionPane.ERROR_MESSAGE);
 				return;		
 			} else if(!numProntuario.getText().matches("[0-9]*")){
-				JOptionPane.showMessageDialog(null, "O Prontuario deve conter apenas números", 
+				JOptionPane.showMessageDialog(null, "O Prontuario deve conter apenas nï¿½meros", 
 						"Erro", JOptionPane.ERROR_MESSAGE);
 				return;
 			}
@@ -370,7 +377,7 @@ public class CadastroController {
 				return;		
 			}
 			
-			//INSERÇÃO NAS TABELAS DO USUÁRIO PACIENTE
+			//INSERï¿½ï¿½O NAS TABELAS DO USUï¿½RIO PACIENTE
 			//usuarioCadastrado.setIdTipoUsuario(1);
 			
 		}else if(idCadastro == "Recepcionista"){
@@ -405,7 +412,7 @@ public class CadastroController {
 			if (sexoMasculino.isSelected() && sexoFeminino.isSelected() || 
 					!sexoMasculino.isSelected() && !sexoFeminino.isSelected()) {
 
-				JOptionPane.showMessageDialog(null, "Selecione uma opção para informar o Sexo", 
+				JOptionPane.showMessageDialog(null, "Selecione uma opï¿½ï¿½o para informar o Sexo", 
 						"Erro", JOptionPane.ERROR_MESSAGE);
 				return;	
 			}
@@ -422,7 +429,7 @@ public class CadastroController {
 				return;
 
 			} else if(!telefone.getText().matches("[0-9]*")){
-				JOptionPane.showMessageDialog(null, "O telefone deve conter apenas números", 
+				JOptionPane.showMessageDialog(null, "O telefone deve conter apenas nï¿½meros", 
 						"Erro", JOptionPane.ERROR_MESSAGE);
 				return;
 			}
@@ -432,7 +439,7 @@ public class CadastroController {
 						"Erro", JOptionPane.ERROR_MESSAGE);
 				return;			
 			} else if(!rg.getText().matches("[0-9]*")){
-				JOptionPane.showMessageDialog(null, "O RG deve conter apenas números", 
+				JOptionPane.showMessageDialog(null, "O RG deve conter apenas nï¿½meros", 
 						"Erro", JOptionPane.ERROR_MESSAGE);
 				return;
 			}
@@ -442,7 +449,7 @@ public class CadastroController {
 						"Erro", JOptionPane.ERROR_MESSAGE);
 				return;
 			} else if(!cpf.getText().matches("[0-9]*")){
-				JOptionPane.showMessageDialog(null, "O CPF deve conter apenas números", 
+				JOptionPane.showMessageDialog(null, "O CPF deve conter apenas nï¿½meros", 
 						"Erro", JOptionPane.ERROR_MESSAGE);
 				return;
 			}
@@ -466,40 +473,38 @@ public class CadastroController {
 			}
 
 			if (numResidencia.getText().isEmpty()) {
-				JOptionPane.showMessageDialog(null, "Informe um Número de Residência", 
+				JOptionPane.showMessageDialog(null, "Informe um Nï¿½mero de Residï¿½ncia", 
 						"Erro", JOptionPane.ERROR_MESSAGE);
 				return;			
 			} else if(!numResidencia.getText().matches("[0-9]*")){
-				JOptionPane.showMessageDialog(null, "O Número de Residência deve conter apenas números", 
+				JOptionPane.showMessageDialog(null, "O Nï¿½mero de Residï¿½ncia deve conter apenas nï¿½meros", 
 						"Erro", JOptionPane.ERROR_MESSAGE);
 				return;
 			}
 
 			if (codigoId.getText().isEmpty()) {
-				JOptionPane.showMessageDialog(null, "Informe um código para o Recepcionista", 
+				JOptionPane.showMessageDialog(null, "Informe um cï¿½digo para o Recepcionista", 
 						"Erro", JOptionPane.ERROR_MESSAGE);
 				return;		
 			}
 
 
-			//INSERÇÃO NAS TABELAS DO USUARIO RECEPCIONISTA
+			//INSERï¿½ï¿½O NAS TABELAS DO USUARIO RECEPCIONISTA
 			//usuarioCadastrado.setIdTipoUsuario(2);
 			
-			int numeroResidencia = 0;
-			try{
-				numeroResidencia = Integer.parseInt(numResidencia.getText());
-			}catch(NumberFormatException ex){
-
-			}
-
-			//Inserindo  endereço do Recepecionista na tabela Endereço
-			DAOEndereco enderecoRecepcionista = new DAOEndereco();
-			//enderecoRecepcionista.insertEndereco(idRecepcionista, endereco.getText(), cidade.getText(), 
-			//	bairro.getText(), numeroResidencia);
-
-			//Inserindo recepcionista na tabela Recepcionista
-			DAORecepcionista novoRecepcionista = new DAORecepcionista();
-			novoRecepcionista.insertRecepcionista(idRecepcionista, idRecepcionista, codigoId.getText().toString() );		
+			DAOUsuario daoUser = new DAOUsuario();
+			Date date = Date.from(dataNascimento.getValue().atStartOfDay(ZoneId.systemDefault()).toInstant());
+			daoUser.insertUsuario(login.getText(), senha.getText(), nome.getText(), date, rg.getText(), cpf.getText(),
+					sexo, telefone.getText(), email.getText(), ID_RECEPCIONISTA);
+			Usuario usuario = daoUser.selectUsuario(DAOUsuario.COLUMN_LOGIN, login.getText());
+			DAORecepcionista daoRecep = new DAORecepcionista();
+			daoRecep.insertRecepcionista(usuario.getId(), codigoId.getText());
+			
+			DAOEndereco daoEnd = new DAOEndereco();
+			daoEnd.insertEndereco(endereco.getText(), "59073156", bairro.getText(), Integer.parseInt(numResidencia.getText()), usuario.getId());
+								
+			JOptionPane.showMessageDialog(null, "Usuario Cadastrado com sucesso!");
+			Main.mostraTelaLogin();
 
 		}
 	}
