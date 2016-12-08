@@ -1,10 +1,7 @@
 package view;
-
-
+import java.awt.Button;
 import java.io.IOException;
-import java.sql.SQLException;
 import java.time.ZoneId;
-import java.time.format.DateTimeFormatter;
 import java.util.Date;
 
 import javax.swing.JOptionPane;
@@ -21,20 +18,23 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.control.Button;
+
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.RadioButton;
+import javafx.scene.control.TabPane;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import model.TipoUsuario;
 import model.Usuario;
 
+public class TelaInicialRecepcionistaController extends CadastroController{
 
-public class CadastroController {
+	@FXML
+	TabPane abas;
 
 	//Id do Formulario ativo
 	private static String idCadastro;
@@ -54,14 +54,15 @@ public class CadastroController {
 
 	@FXML
 	private Pane painelCadastro;
-
+			
 	@FXML
 	private ComboBox<String> tipoUsuario = new ComboBox<String>();
 
 	private ObservableList<String> tipoUsuarioOpcoes;
 	
-	
-
+	/*@FXML
+	private Button btnCancelarCadastro = new Button();
+	*/
 	//TODOS OS CAMPOS DOS 3 FORMULARIOS
 	//Campos do formulario comuns a todos os tipos de usuario
 	@FXML
@@ -90,17 +91,20 @@ public class CadastroController {
 	private CheckBox limitacaoCognitiva, limitacaoLocomocao, limitacaoVisao, limitacaoAudicao, limitacaoOutras;
 
 
+	
 	@FXML
 	public void initialize() {
-		initComponents();
-		initListeners();
-		initLayout();		
+		super.initComponents();
+		super.initListeners();
+		super.initLayout();		
 	}
 
+	
 	public void initLayout() {
 
 	}
 
+	
 	public void initComponents() {
 		tipoUsuarioOpcoes = FXCollections.observableArrayList();
 		tipoUsuarioOpcoes.addAll("Selecione", "Paciente","Recepcionista","Médico");
@@ -110,8 +114,10 @@ public class CadastroController {
 		tipoUsuario.setValue("Selecione");
 	}
 
+	@Override
 	public void initListeners() {
 
+		
 		tipoUsuario.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
 			@Override
 			public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
@@ -119,13 +125,13 @@ public class CadastroController {
 				idCadastro = newValue;
 			}
 		});
-
-
+								
 	}
 
+	
 	@FXML
 	private void cancelarCadastro(){			
-		Main.mostraTelaLogin();
+		resetarCampos();			
 	}
 
 	@FXML
@@ -543,6 +549,73 @@ public class CadastroController {
 
 			e1.printStackTrace();
 		}
+	}
+
+	public void resetarCampos(){
+		
+		if(idCadastro == "Médico"){
+			this.login.setText(null);
+			this.nome.setText(null);
+			this.telefone.setText(null);
+			this.rg.setText(null);
+			this.cpf.setText(null);				
+			this.senha.setText(null);				
+			this.bairro.setText(null);
+			this.cidade.setText(null);
+			this.endereco.setText(null);
+			this.numResidencia.setText(null);
+			this.email.setText(null);
+			this.dataNascimento.setValue(null);
+			this.sexoMasculino.setSelected(false);
+			this.sexoFeminino.setSelected(false);
+			this.crm.setText(null);
+			this.especialidade.setText(null);
+			
+		}
+		else if(idCadastro == "Paciente"){
+			this.login.setText(null);
+			this.nome.setText(null);
+			this.telefone.setText(null);
+			this.rg.setText(null);
+			this.cpf.setText(null);				
+			this.senha.setText(null);				
+			this.bairro.setText(null);
+			this.cidade.setText(null);
+			this.endereco.setText(null);
+			this.numResidencia.setText(null);
+			this.email.setText(null);
+			this.dataNascimento.setValue(null);
+			this.sexoMasculino.setSelected(false);
+			this.sexoFeminino.setSelected(false);
+			this.numProntuario.setText(null);
+			this.medicacao.setText(null);
+			this.alergia.setText(null);
+			this.descricaoLimitacao.setText(null);
+			this.estadoCivil.setText(null);				
+			this.limitacaoCognitiva.setSelected(false);
+			this.limitacaoLocomocao.setSelected(false);
+			this.limitacaoVisao.setSelected(false);
+			this.limitacaoAudicao.setSelected(false);
+			this.limitacaoOutras.setSelected(false);	
+		}
+
+		else if(idCadastro == "Recepcionista"){
+			this.login.setText(null);
+			this.nome.setText(null);
+			this.telefone.setText(null);
+			this.rg.setText(null);
+			this.cpf.setText(null);				
+			this.senha.setText(null);				
+			this.bairro.setText(null);
+			this.cidade.setText(null);
+			this.endereco.setText(null);
+			this.numResidencia.setText(null);
+			this.email.setText(null);
+			this.dataNascimento.setValue(null);
+			this.sexoMasculino.setSelected(false);
+			this.sexoFeminino.setSelected(false);
+			this.codigoId.setText(null);
+		}									
 	}
 	
 }

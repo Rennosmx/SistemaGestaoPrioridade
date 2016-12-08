@@ -5,8 +5,7 @@ import javafx.scene.control.TextField;
 
 public class TelaInicialPacienteController {
 
-	@FXML
-	TextField telaPaciente;
+	
 
 	
 	

@@ -62,7 +62,7 @@ public class DAOUsuario extends DBConect{
 				stmt.setString(9, email);
 				stmt.setInt(10, idTipoUsuario);
 				stmt.executeUpdate();
-				System.out.println("usuario incluido com sucesso!");
+				System.out.println("Usuario incluido com sucesso!");
 			} catch(SQLException e){
 				System.out.println("erro ao incluir usuario: " + e.getMessage());
 			} finally {
@@ -103,7 +103,7 @@ public class DAOUsuario extends DBConect{
 				user.setIdTipoUsuario(rs.getInt(COLUMN_ID_TIPO_USUARIO));
 				user.setTelefone(rs.getString(COLUMN_TELEFONE));
 			}
-			System.out.println("pesquisa feita!");
+			System.out.println("Usuário pesquisado com sucesso!");
 		} catch(SQLException e){
 			System.out.println("erro ao selecionar usuario: " + e.getMessage());
 		} finally {

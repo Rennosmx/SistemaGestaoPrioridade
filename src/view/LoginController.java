@@ -25,7 +25,7 @@ public class LoginController {
 		
 		//Pesquisa o usuario para o login digitado
 		DAOUsuario daoUsuario = new DAOUsuario();
-		Usuario usuario = daoUsuario.selectUsuario("COLUMN_LOGIN", txUsuario.getText());
+		Usuario usuario = daoUsuario.selectUsuario("login", txUsuario.getText());
 		
 		//Autentica o usuario
 		if(usuario != null && txSenha.getText().equals(usuario.getSenha())){
@@ -33,18 +33,18 @@ public class LoginController {
 				
 				//Filtra o tipo de usuario
 				
-				//USUARIO DO TIPO MEDICO
-				if(usuario.getIdTipoUsuario() == 0){
-					//Main.mostraTelaInicialMedico();
-				}
 				//USUARIO DO TIPO PACIENTE
-				else if(usuario.getIdTipoUsuario() == 1){
-					Main.mostraTelaInicialPaciente();
-					
+				if(usuario.getIdTipoUsuario() == 1){
+					Main.mostraTelaInicialPaciente();					
 				}
+						
 				//USUARIO DO TIPO RECEPCIONISTA
 				else if(usuario.getIdTipoUsuario() == 2){
-					//Main.mostraTelaInicialRecepcionista();
+					Main.mostraTelaInicialRecepcionista();
+				}
+				//USUARIO DO TIPO MEDICO
+				else if(usuario.getIdTipoUsuario() == 3){
+					//Main.mostraTelaInicialMedico();
 				}
 								
 			} catch (Exception e) {
