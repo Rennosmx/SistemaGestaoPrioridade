@@ -24,6 +24,8 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.RadioButton;
+import javafx.scene.control.SingleSelectionModel;
+import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
@@ -35,6 +37,11 @@ public class TelaInicialRecepcionistaController extends CadastroController{
 
 	@FXML
 	TabPane abas;
+
+
+	public static int idAba = 0;
+
+
 
 	//Id do Formulario ativo
 	private static String idCadastro;
@@ -54,15 +61,15 @@ public class TelaInicialRecepcionistaController extends CadastroController{
 
 	@FXML
 	private Pane painelCadastro;
-			
+
 	@FXML
 	private ComboBox<String> tipoUsuario = new ComboBox<String>();
 
 	private ObservableList<String> tipoUsuarioOpcoes;
-	
+
 	/*@FXML
 	private Button btnCancelarCadastro = new Button();
-	*/
+	 */
 	//TODOS OS CAMPOS DOS 3 FORMULARIOS
 	//Campos do formulario comuns a todos os tipos de usuario
 	@FXML
@@ -91,35 +98,47 @@ public class TelaInicialRecepcionistaController extends CadastroController{
 	private CheckBox limitacaoCognitiva, limitacaoLocomocao, limitacaoVisao, limitacaoAudicao, limitacaoOutras;
 
 
-	
+
 	@FXML
 	public void initialize() {
+		SingleSelectionModel<Tab> tabSelecionada = abas.getSelectionModel();
+
+		if(idAba == 1){
+			tabSelecionada.select(1);
+		}else{
+			tabSelecionada.select(0);
+		}
 		super.initComponents();
 		super.initListeners();
 		super.initLayout();		
 	}
 
-	
+
 	public void initLayout() {
 
 	}
 
-	
+
 	public void initComponents() {
-		
-		
+
+
 		tipoUsuarioOpcoes = FXCollections.observableArrayList();
 		tipoUsuarioOpcoes.addAll("Selecione", "Paciente","Recepcionista","Médico");
 
 		tipoUsuario.getItems().clear();
 		tipoUsuario.setItems(tipoUsuarioOpcoes);
 		tipoUsuario.setValue("Selecione");
+
+
+
+
 	}
+
 
 	@Override
 	public void initListeners() {
 
-		
+
 		tipoUsuario.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
 			@Override
 			public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
@@ -127,17 +146,30 @@ public class TelaInicialRecepcionistaController extends CadastroController{
 				idCadastro = newValue;
 			}
 		});
-								
+
 	}
 
-	
+
 	@FXML
 	private void cancelarCadastro(){			
 		resetarCampos();			
 	}
 
 	@FXML
+	private void adicionarMedicamento(){
+		idAba = 1;
+		Main.mostraTelaMedicamento();
+	}
+
+	@FXML
+	private void adicionarConsulta(){
+		idAba = 1;
+		Main.mostraTelaConsulta();
+	}
+
+	@FXML
 	private void cadastrar(){
+
 
 		//Associando radioButton marcado ï¿½ string Sexo
 		if(sexoMasculino.isSelected()){
@@ -554,7 +586,7 @@ public class TelaInicialRecepcionistaController extends CadastroController{
 	}
 
 	public void resetarCampos(){
-		
+
 		if(idCadastro == "Médico"){
 			this.login.setText(null);
 			this.nome.setText(null);
@@ -572,7 +604,7 @@ public class TelaInicialRecepcionistaController extends CadastroController{
 			this.sexoFeminino.setSelected(false);
 			this.crm.setText(null);
 			this.especialidade.setText(null);
-			
+
 		}
 		else if(idCadastro == "Paciente"){
 			this.login.setText(null);
@@ -619,5 +651,5 @@ public class TelaInicialRecepcionistaController extends CadastroController{
 			this.codigoId.setText(null);
 		}									
 	}
-	
+
 }

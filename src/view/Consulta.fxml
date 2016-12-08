@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="350.0" prefWidth="450.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.ConsultaController">
+   <children>
+      <MenuButton fx:id="menuConsultas" layoutX="161.0" layoutY="43.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="149.0" text="Selecione:">
+         <items>
+            <MenuItem mnemonicParsing="false" text="Action 1" />
+            <MenuItem mnemonicParsing="false" text="Action 2" />
+         </items>
+      </MenuButton>
+      <Label layoutX="198.0" layoutY="14.0" text="Consulta">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="105.0" layoutY="87.0" text="Paciente:" />
+      <TextField fx:id="nomePaciente" layoutX="161.0" layoutY="84.0" />
+      <Label layoutX="110.0" layoutY="119.0" text="Médico:" />
+      <TextField fx:id="nomeMedico" layoutX="161.0" layoutY="116.0" />
+      <Label layoutX="122.0" layoutY="151.0" text=" Data:" />
+      <DatePicker fx:id="dataConsulta" layoutX="161.0" layoutY="148.0" />
+      <Label layoutX="89.0" layoutY="183.0" text="       Motivo:" />
+      <TextField fx:id="motivoConsulta" layoutX="161.0" layoutY="180.0" />
+      <Label layoutX="51.0" layoutY="217.0" text="       Laudo Médico:" />
+      <TextField fx:id="laudoMedico" layoutX="161.0" layoutY="214.0" />
+      <CheckBox fx:id="consultaRealizada" layoutX="162.0" layoutY="246.0" mnemonicParsing="false" text="Consulta Realizada" />
+      <Button layoutX="199.0" layoutY="293.0" mnemonicParsing="false" onAction="#cadastrarConsulta" text="Cadastrar " />
+      <Button layoutX="282.0" layoutY="293.0" mnemonicParsing="false" onAction="#deletarConsulta" prefWidth="70.0" text="Deletar" />
+      <Button layoutX="115.0" layoutY="293.0" mnemonicParsing="false" onAction="#voltarTelaProntuario" prefWidth="70.0" text="Voltar" />
+   </children>
+</AnchorPane>

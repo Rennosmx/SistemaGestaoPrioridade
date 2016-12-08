@@ -19,6 +19,8 @@ public class Main extends Application {
 	private static AnchorPane telaCadastro;
 	private static AnchorPane telaInicialPaciente;
 	private static AnchorPane telaInicialRecepcionista;
+	private static AnchorPane telaMedicamento;
+	private static AnchorPane telaConsulta;
 
 	@Override
 	public void start(Stage primaryStage) {		
@@ -97,6 +99,44 @@ public class Main extends Application {
 			telaInicialRecepcionista = (AnchorPane) loader.load();
 
 			Scene scene = new Scene(telaInicialRecepcionista);
+			primaryStage.setScene(scene);
+			primaryStage.setResizable(false);            
+			primaryStage.show();
+
+
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+		
+	public static void mostraTelaMedicamento(){
+
+		try {
+			
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(Main.class.getResource("/view/Medicamento.fxml"));					
+			telaMedicamento = (AnchorPane) loader.load();
+
+			Scene scene = new Scene(telaMedicamento);
+			primaryStage.setScene(scene);
+			primaryStage.setResizable(false);            
+			primaryStage.show();
+
+
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public static void mostraTelaConsulta(){
+
+		try {
+			
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(Main.class.getResource("/view/Consulta.fxml"));					
+			telaConsulta = (AnchorPane) loader.load();
+
+			Scene scene = new Scene(telaConsulta);
 			primaryStage.setScene(scene);
 			primaryStage.setResizable(false);            
 			primaryStage.show();
