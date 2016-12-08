@@ -106,6 +106,8 @@ public class TelaInicialRecepcionistaController extends CadastroController{
 
 	
 	public void initComponents() {
+		
+		
 		tipoUsuarioOpcoes = FXCollections.observableArrayList();
 		tipoUsuarioOpcoes.addAll("Selecione", "Paciente","Recepcionista","Médico");
 
